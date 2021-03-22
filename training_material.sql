@@ -48,6 +48,11 @@ select * --select clause
 ----date
 ----datetime
 ----time
+--Operators
+----Like
+----Logical
+------ or, and, in, between, like
+----
 --DDL
 ---Create
 ---alter
@@ -57,6 +62,24 @@ select * --select clause
 ---insert
 --DQL
 ---select
+--SET Operations
+--Constraints
+--Joins
+--Functions
+----Ranking Functions
+----Aggregation functions
+----
+--Primary Key
+--Foreign key
+
+
+
+
+--views
+--triggers
+--stored procedures
+--functions
+
 
 
 --SET Operations
@@ -354,3 +377,39 @@ select e.id, e.name, d.name
 --     on e.depid <> d.dep_id
 --order by e.id
 
+
+--Regular expression
+--wildcard characters
+--% any character, any number of times
+-- _ any aingle character
+--Like
+update tbl_employee set name = 'sai_matcha' where  id = 1
+update tbl_employee set name = 'saibaba' where  id = 2
+
+select *
+  from tbl_employee
+ where name like '%a%' --anywhere in the string
+
+select *
+  from tbl_employee
+ where name like 'a%' --starting with a
+
+select *
+  from tbl_employee
+ where name like '%a' --Ending with a
+
+select *
+  from tbl_employee
+ where name like '%ai' --Ending with ai
+
+ select *
+  from tbl_employee
+ where name like 's%i' --starts with s and ends with i
+
+ select *
+  from tbl_employee
+ where name like 's_i' --starts with s and ends with i and has only one letter in between
+
+ select *
+  from tbl_employee
+ where name like 'sai[_]%' --escaepe wildcard characters
