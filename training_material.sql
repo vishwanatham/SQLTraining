@@ -193,6 +193,9 @@ select *, RANK() over(order by salary desc) as 'SalaryRank'
 select *, DENSE_RANK() over(order by salary desc) as 'SalaryRank'
   from tbl_employee 
 
+select *, RANK() over(partition by depid order by salary desc) as 'SalaryRank'
+  from tbl_employee
+
 --order of execution for select
 --from
 --where
@@ -413,3 +416,95 @@ select *
  select *
   from tbl_employee
  where name like 'sai[_]%' --escaepe wildcard characters
+
+ --Arithmatic operators
+ -- % - To get the remainder
+ -- / - will give quotient in division operation
+ -- +
+ -- -
+
+ --String Function
+ -- len
+ -- 
+
+-- ranking
+-- Partition 
+
+--https://www.hackerrank.com/challenges/weather-observation-station-5/problem
+--Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). 
+--If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
+
+
+--shortest and longest CITY names
+(select max(len(CITY)) from STATION)
+(select min(len(CITY)) from STATION)
+
+
+--Query the cities in STATION with the shortest and longest CITY names, as well as their respective lengths
+select CITY, len(CITY) as length, row_number() over(partition by len(CITY) order by CITY asc) as rank
+  from STATION
+ where len(CITY) in ( (select max(len(CITY)) from STATION), (select min(len(CITY)) from STATION))
+
+
+
+--Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). 
+--If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
+select CITY, length
+  from (select CITY, len(CITY) as length, row_number() over(partition by len(CITY) order by CITY asc) as rank
+        from STATION
+        where len(CITY) in ( (select max(len(CITY)) from STATION), (select min(len(CITY)) from STATION))) b
+where rank = 1
+
+
+--Case statement
+
+--Increase the salary as mentioned below per department wise
+select * from tbl_department
+--Accounts - 8%
+--Technology - 10%
+--HR - 7%
+--Management - 5%
+
+
+--Accounts - 8%
+--Technology - 10%
+--other - 5%
+select 1000 + ( 1000 * 0.08)
+
+select 1000 + ( 1000 * 8/100)
+
+select 1000  * 1.08
+
+
+select e.*
+     , case 
+	     when d.name = 'Accounts' then ( e.salary + (e.salary * 8/100.0))
+		 when d.name = 'Technology' then ( e.salary + (e.salary * 10/100.0))
+		 when d.name = 'HR' then ( e.salary + (e.salary * 7/100.0))
+		 when d.name = 'Management' then ( e.salary + (e.salary * 5/100.0))
+	   end
+  from tbl_employee e
+  join tbl_department d
+    on e.depid = d.dep_id
+
+select e.*
+     , case 
+	     when d.name = 'Accounts' then ( e.salary + (e.salary * 8/100.0))
+		 when d.name = 'Technology' then ( e.salary + (e.salary * 10/100.0))
+		 else ( e.salary + (e.salary * 5/100.0))
+	   end
+  from tbl_employee e
+  join tbl_department d
+    on e.depid = d.dep_id
+
+select e.*
+     , case  d.name
+	     when 'Accounts' then ( e.salary + (e.salary * 8/100.0))
+		 when 'Technology' then ( e.salary + (e.salary * 10/100.0))
+		 when 'HR' then ( e.salary + (e.salary * 7/100.0))
+		 when 'Management' then ( e.salary + (e.salary * 5/100.0))
+	   end
+  from tbl_employee e
+  join tbl_department d
+    on e.depid = d.dep_id
+
