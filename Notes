@@ -1,0 +1,56 @@
+SQL
+
+ Structured Query Lanaguage.
+ 
+ Data
+	--Structured - particular format excel, csv, xml, json.
+	--Unstrcured - no structure
+	--semi structured
+	
+
+SQL--
+	Relational Databases
+		Microsoft SQL Server - MSSQL
+		Oracle
+		PostgreSQL
+		MySQL
+		etc...
+	Spark SQL
+	Athena
+	
+
+Relational Databases		
+		Why do we need database
+			File storage will difficult to maitaina
+			sharing of the data would be difficult
+			it is not centralized
+			Searching and adding the data would be difficult
+			if you wanted to do analysis on the data would be difficult
+		What are databases nedded
+			Engine
+			  Which can answer your queries using SQL
+			  
+
+
+Microsoft SQL Server
+	Relational Database: RDBMS
+	
+	Database Engine	
+	Analysis Service
+	Integration Service
+	
+	
+			  
+SQL >> RDBMS >> MSSQL >> Database Engine
+
+
+Client (Tool) -> Server (Central)
+
+Client Tool helps you to write and execute the Queries
+
+
+Client Tool - Sql Server Management Studio - SSMS
+
+
+		
+		
