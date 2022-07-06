@@ -56,3 +56,32 @@ Client Tool - Sql Server Management Studio - SSMS
 https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16
 https://go.microsoft.com/fwlink/p/?linkid=866662
 		
+
+--Installation
+  --SQL Server - Default
+  --SSMS - Editor
+
+--Authentication
+
+	Windows Authentication
+		--Based on active directory and doesn't need user name and password
+	SQL Server Authentication
+		--Requires username and password to be be provided
+
+-- SSMS
+	Object Explorer - You will be able to see information about all the databases and it's objects
+	Query Pane      - Where you write queries
+	Result Pane 	- You will see results
+		-- Results to Text
+		-- Results to Grid
+		-- Results to File
+	Options
+		New Query         - CTL +N
+		Exceute   		  - F5
+		Sjow/Hide Results - CTRL + R
+		
+	
+-- Created Database
+	By default it creates two files
+	Master/Primary Data File - .mdf - This is the file where your data would be saved
+	Log file - .ldf - Log transactions
